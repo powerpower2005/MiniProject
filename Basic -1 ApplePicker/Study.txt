@@ -1,0 +1,66 @@
+Apple
+요약: 사과
+
+상세:
+해당 값이 넘어가면 destroy하고 다른 스크립트의 메서드를 실행해서 Notify기능
+-> 해당 오브젝트가 파괴되면 게임을 재시작해야함.
+
+
+
+
+ApplePicker
+요약: 사과 줍는 사람
+
+상세:
+Notify를 받으면 자신의 인스턴스를 하나 삭제하며 게임을 재시작하기 위해서
+FindGameObjectsWithTag로 사과를 찾아서 destroy함.
+-> 이 인스턴스는 List로 관리됨. List의 Count가 0이 되면 씬 다시 로드
+
+
+AppleTree
+요약: 사과를 떨어뜨림
+
+상세: Invoke로 실행하여 메서드를 시간간격을 두고 떨어뜨리게함.
+-> 게임 시작하자 떨어지는 불상사를 막음.
+-> 그 이후는 Delay를 선언하여 정해진 시간에 맞추어 떨어뜨림.
+
+Random.value로 랜덤 값을 받아서 어느 조건에 방향을 바꾸게함.
+
+
+
+Basket 
+요약: 플레이어
+
+상세:
+마우스를 Update()에서 입력을 끊임 없이 받음 하지만 스크린 입력과 게임 공간 상의 차이 발생
+-> ScreenToWorldPoint로 스크린에서 받은 마우스입력을 게임공간으로 치환함.
+
+사과를 먹으면 점수가 올라감.
+-> UI를 연결하여 Text로 선언된 점수판 조작.
+
+
+High Score
+요약: 최고점수
+
+상세: 최고점수는 게임을 실행하는 동안 변화해야 하므로 저장해야함.
+Playerprefs 의 get으로 HighScore를 받아오며 
+Basket(플레이어)가 달성한 점수와 High Score를 Update에서 비교하며
+High Score보다 score가 높으면 Playerprefs에 set한다.
+
+
+
+--------------------------
+1. Playerprefs
+게임 진행되는 도중 int형 자료 저장,수정,호출
+
+2. OntriggerEnter
+isTrigger된 collider와 만나는 순간 하는 일 작성
+
+3. Invoke
+메서드의 지연 실행
+
+4.Notify의 개념
+내가 destroy된 것을 다른 객체에게 알림
+
+5.List
+List는 동적으로 크기 변환가능
